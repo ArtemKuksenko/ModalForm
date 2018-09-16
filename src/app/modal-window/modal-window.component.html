@@ -1,0 +1,28 @@
+<div 
+	*ngIf="isOpened" class="modalWindow"
+	 [ngStyle]="Form.height"
+>
+	<h3>{{Form.title}}</h3>
+	<p>{{Form.description}}</p>
+	<form [formGroup]="Form.FormForModal">
+		<div *ngFor="let k of Form.k" >
+		 	<p>{{Form.t[k]}}</p>
+				<input
+				  *ngIf="Form.type[k]==='input'"
+				formControlName="{{Form.n[k]}}" placeholder="{{Form.pl[k]}}"  
+				/>
+				<input
+				  *ngIf="Form.type[k]==='password'" type="password"
+				formControlName="{{Form.n[k]}}" placeholder="{{Form.pl[k]}}"
+				/>
+				
+				<div *ngIf="Form.type[k]==='checkbox'" >
+				<label class="checkbox">
+					<input type="checkbox" formControlName="{{Form.n[k]}}"/>
+  					<div class="checkbox__text"><br><br></div>
+  				</label>
+				</div >
+		 </div>
+	 </form>  
+	<a (click) = "onClick()"  class="button8">ОК</a>
+</div>
